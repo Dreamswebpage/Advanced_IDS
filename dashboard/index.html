@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IDS Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Intrusion Detection System Dashboard</h1>
+    <div class="status">
+      <span id="health-status">Checking backend...</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="controls">
+      <button id="refresh-btn">Refresh Alerts</button>
+      <label>
+        Auto Refresh:
+        <input type="checkbox" id="auto-refresh" checked />
+      </label>
+    </section>
+
+    <section class="alerts">
+      <h2>Recent Alerts</h2>
+      <table id="alerts-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Time</th>
+            <th>Level</th>
+            <th>Message</th>
+            <th>Source IP</th>
+            <th>Dest IP</th>
+            <th>Rule</th>
+          </tr>
+        </thead>
+        <tbody id="alerts-body">
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
