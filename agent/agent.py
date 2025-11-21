@@ -1,4 +1,4 @@
-from scapy.all import sniff, IP, TCP, UDP
+from scapy.all import sniff, IP, TCP, UDP, get_if_list
 import time
 import json
 import threading
@@ -7,6 +7,17 @@ from collections import deque
 from config import BACKEND_URL, INTERFACE, BATCH_SIZE, SEND_INTERVAL
 
 event_buffer = deque()
+
+# Debug: list all interfaces
+print("DEBUG → Available Interfaces:", get_if_list())
+print("DEBUG → INTERFACE from config.py =", INTERFACE)
+
+# Validate interface exists
+if INTERFACE not in get_if_list():
+    print(f"❌ ERROR: Interface '{INTERFACE}' not found!")
+    print("➡ Please update INTERFACE in config.py to one of the following:")
+    print(get_if_list())
+    exit(1)
 
 def packet_to_event(pkt):
     event = {
@@ -56,9 +67,11 @@ def sender_thread():
                     headers={"Content-Type": "application/json"},
                     timeout=5
                 )
-                print(f"[AGENT] Sent {len(batch)} events, status={resp.status_code}")
+                print(f"[AGENT] Sent {len(batch)} events → status={resp.status_code}")
+
         except Exception as e:
             print(f"[AGENT] Error sending data: {e}")
+
         time.sleep(SEND_INTERVAL)
 
 def start_sniffer():
