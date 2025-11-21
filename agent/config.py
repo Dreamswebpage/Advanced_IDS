@@ -1,4 +1,9 @@
-BACKEND_URL = "http://127.0.0.1:5000/api/events"  # backend ka URL
-INTERFACE = "eth0"  # Windows pe "Ethernet" ya "Wi-Fi" use kar sakte ho
-BATCH_SIZE = 10      # kitne packets ek sath bhejne hain
-SEND_INTERVAL = 5    # seconds
+BACKEND_URL = "https://abhiids.onrender.com/api/events"   # Render backend URL
+
+# Windows network interface name
+# If you're using mobile hotspot, interface is usually "Wi-Fi"
+INTERFACE = "Wi-Fi"
+
+# Packet batching
+BATCH_SIZE = 10       # Number of packets per batch
+SEND_INTERVAL = 5     # Send interval in seconds
