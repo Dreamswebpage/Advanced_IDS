@@ -1,6 +1,7 @@
 import time
 from collections import deque
-from backend.config import MAX_ALERTS
+from config import MAX_ALERTS
+
 
 class Alert:
     def __init__(self, level, message, details=None, source="engine"):
@@ -25,3 +26,4 @@ alerts_store = deque(maxlen=MAX_ALERTS)
 
 def add_alert(alert: Alert):
     alerts_store.appendleft(alert)
+
